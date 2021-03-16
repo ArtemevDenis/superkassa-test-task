@@ -1,0 +1,35 @@
+button {
+    border: none;
+}
+
+.circle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.circle-button:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24), 0 3px 6px rgba(0, 0, 0, 0.36);
+}
+
+.circle-button:focus {
+    border: 3px solid black;
+    outline: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24), 0 3px 6px rgba(0, 0, 0, 0.36);
+}
+
+.circle-button--red {
+    background: #fc3b3b;
+}
+
+.circle-button--green {
+    background: #59f259;
+}
