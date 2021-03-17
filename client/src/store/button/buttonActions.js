@@ -12,10 +12,10 @@ export const setOn = (callback) => {
     }
 }
 
-export const fetchStatus = () => {
-    return async dispatch => {
-        const res = await fetch('/api/v1/button/status', {method: 'GET'})
-        const data = await res.json()
-        dispatch({type: 'button/FETCH_STATUS', payload: data.status})
+export const setStatus = (status) =>{
+    console.log(1231)
+    return {
+        type: 'button/SET_STATUS',
+        payload: status
     }
 }

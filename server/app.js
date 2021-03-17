@@ -1,17 +1,16 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-
-
-app.use(express.json({extended: true}))
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-
-app.use('/api/v1/button', require('./routes/buttonStatus.routes'))
-
-
-const port = 8000;
-
-app.listen(port, () => {
-    console.log('Server start on port: ' + port);
+const http = require('http').createServer();
+const io = require("socket.io")(http, {
+    cors: {origin: "*"}
 });
+
+let status = false
+io.on("connection", (client) => {
+    console.log('new connection')
+    client.emit('buttonStatus', status)
+    client.on('buttonStatus', (newStatus) => {
+        status = newStatus
+        io.emit('buttonStatus', status)
+    })
+});
+
+http.listen(8000, () => console.log('start on port 8000'))

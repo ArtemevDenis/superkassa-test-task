@@ -8,7 +8,7 @@ const buttonReducer = (state = initState, action) => {
             return {active: false}
         case 'button/ON':
             return {active: true}
-        case 'button/FETCH_STATUS':
+        case 'button/SET_STATUS':
             return {active: action.payload}
         default:
             return state

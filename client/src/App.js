@@ -1,13 +1,13 @@
-import './App.css';
 import CircleButton from "./components/CircleButton/CircleButton";
 import React, {useEffect} from "react";
 import {useActions} from "./hooks/useActions";
+import {useSocket} from "./hooks/useSocket";
 
 function App() {
-    const {fetchStatus} = useActions()
-
+    const {setStatus} = useActions()
+    const {subscribeStatus} = useSocket()
     useEffect(() => {
-        fetchStatus()
+        subscribeStatus(setStatus)
     }, [])
 
     return (

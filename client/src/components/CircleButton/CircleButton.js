@@ -3,25 +3,18 @@ import {useSelector} from "react-redux";
 import {useActions} from "../../hooks/useActions";
 import './CircleButton.css';
 import {useClassNameBuilder} from "../../hooks/useClassNameBuilder";
-import {useHttp} from "../../hooks/useHttp";
+import {useSocket} from "../../hooks/useSocket";
 
 const CircleButton = () => {
     const {active} = useSelector(state => state.activeButton)
     const {setOn, setOff} = useActions()
     const {classNameBuilder} = useClassNameBuilder()
-    const {request} = useHttp()
+    const {emitStatus} = useSocket()
 
     const root = 'circle-button'
 
     const handlerButton = () => {
-        active ? setOff(sendData) : setOn(sendData)
-    }
-
-    const sendData = (data) => {
-        request('/api/v1/button/status', 'POST', {status: data})
-            .catch(() => {
-                console.log("Произошла ошибка!")
-            })
+        active ? setOff(emitStatus) : setOn(emitStatus)
     }
 
 
